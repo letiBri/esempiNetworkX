@@ -16,8 +16,8 @@ class Voto:
         return self.nome == other.nome
 
 
-grafo = nx.Graph() # grafo semplice
-grafo2 = nx.DiGraph() # grafo diretto
+grafo = nx.Graph()  # grafo semplice
+grafo2 = nx.DiGraph()  # grafo diretto
 
 # un nodo può essere qualsiasi oggetto Python, purchè sia hashable
 grafo.add_node(1)
@@ -25,14 +25,15 @@ grafo.add_node("Due")
 grafo.add_node(Voto(24, "TdP"))
 grafo.add_node(math.cos)
 
-print(grafo.nodes) # stampo nodi
-print(grafo.edges) # stampo archi
+print(grafo.nodes)  # stampo nodi
+grafo.add_edge("Due", 1, arbitaryAttr=0.9)
+print(grafo.edges)  # stampo archi
 
 grafo.add_edge("Due", 1)
-print(grafo.edges)  # grafo non diretto quindi mi stampa gli archi in ordine casuale, non importa l'ordine della tupl a
+print(grafo.edges)  # grafo non diretto quindi mi stampa gli archi in ordine casuale, non importa l'ordine della tupla
 
-grafo2.add_edge("Due", 1,  weight=0.9) # definsico anche un peso
-print(grafo2.edges) # stampa nell'ordine orientato
+grafo2.add_edge("Due", 1,  weight=0.9)  # definisco anche un peso
+print(grafo2.edges)  # stampa nell'ordine orientato
 
 nbunch = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 grafo2.add_nodes_from(nbunch)  # aggiunge gli elementi al grafo
@@ -46,7 +47,8 @@ print(grafo2.nodes)  # aggiunge anche 11
 print(grafo2.get_edge_data("Due", 1))
 
 print(grafo2["Due"])
-# la chiave "Due" punta ad un altro dizionario di valori, cioè i suoi adiacenti, e i valori sono anch'essi dizionari che puntano agli attributi
+# la chiave "Due" punta a un altro dizionario di valori, cioè i suoi adiacenti, e i valori sono anch'essi dizionari che puntano agli attributi
 # ci sono 3 dizionari annidati
 print(grafo2["Due"][1])  # stampo l'attributo associato al nodo 1, avendo acceduto tramite gli adiacenti del nodo "Due"
 
+print(grafo2["Due"][1]["weight"])  # anche gli attributi appartengono a un dizionario e attraverso il nome accediamo al valore associato
